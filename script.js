@@ -76,12 +76,28 @@ var handlers = {
     toggleCompletedPositionInput.value = '';
     view.displayTodos();
   },
-   toggleAll: function() {
-    todoList.toggleAll();
-    view.displayTodos();
+  toggleAll: function() {
+   var totalTodos = this.todos.length;
+   var completedTodos = 0;
+
+   //Get number of completed todos using forEach
+   this.todos.forEach(function(todo) {
+     if (todo.completed === true) {
+        completedTodos++;
+      }
+   });
+
+   //Case 1: If everything is true, make everything false
+   this.todos.forEach(function(todo) {
+     if (completedTodos === totalTodos) {
+       todo.completed = false;
+       //Case 2: Otherwise make everything true
+     } else {
+        todo.completed = true;
+      }
+   });
   }
 };
-
 
 // this just shows what the todo list looks like
 var view = {
