@@ -1,11 +1,25 @@
 // it should store the todos arrays on an object
 
 todosList = {
-  todos: ['item 1', 'item 2', 'item 3'],
+  todos: [],
 
 // it should have a display todos method
   displayTodos: function() {
-    console.log("My todos", this.todos); //"this" refers to entire todosList object
+    console.log("My Todos", this.todos); //"this" refers to entire todosList object
+    // it should tell you if list is empty
+    if(this.todos.length === 0) {
+      console.log("Your todo list is empty!");
+    } else {
+      for (var = 0; i < this.todos.length; i++) {
+        console.log("My Todos:");
+        // it should show completed todos
+        if(this.todos.completed[i] === true) {
+          console.log("(x) ", this.todos[i].todoText); // todosObject.eachTodoItem[i].todoTextProperty
+        } else {
+          console.log("( ) ", this.todos[i].todoText);
+        }
+      }
+    }
   },
 
   // addTodo should add objects ie todo text
@@ -17,7 +31,7 @@ todosList = {
     this.displayTodos();
   },
 
-  //chnage todo should change the todo text property
+  //change todo should change the todo text property
   changeTodo: function(position, todoText) {
     this.todos[position].todoText = todoText; //todolistObject.todosArray[positionParameter].todoTextProperty = todoTextValue
     this.displayTodos();
