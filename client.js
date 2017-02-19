@@ -1,19 +1,18 @@
 // it should store the todos arrays on an object
 
-todosList = {
+var todoList = {
   todos: [],
 
 // it should have a display todos method
   displayTodos: function() {
-    console.log("My Todos", this.todos); //"this" refers to entire todosList object
     // it should tell you if list is empty
     if(this.todos.length === 0) {
       console.log("Your todo list is empty!");
     } else {
-      for (var = 0; i < this.todos.length; i++) {
-        console.log("My Todos:");
+      console.log("My Todos:");
+      for (var i = 0; i < this.todos.length; i++) {
         // it should show completed todos
-        if(this.todos.completed[i] === true) {
+        if(this.todos[i].completed === true) {
           console.log("(x) ", this.todos[i].todoText); // todosObject.eachTodoItem[i].todoTextProperty
         } else {
           console.log("( ) ", this.todos[i].todoText);
@@ -26,7 +25,7 @@ todosList = {
   addTodo: function(todoText) {
     this.todos.push({
       todoText: todoText, // property: parameter
-      completed: false;
+      completed: false
     });
     this.displayTodos();
   },
@@ -48,5 +47,37 @@ todosList = {
     var todo = this.todos[position];
     todo.completed = !todo.completed;
     this.displayTodos();
+  },
+  toggleAll: function() {
+    var totalTodos = this.todos.length;
+    var completedTodos = 0;
+
+    //Get number of completed todos
+    for (var i = 0; i < totalTodos; i++) {
+      if (this.todos[i].completed === true) {// if all todos items are completed then increment by one
+        completedTodos++;
+      }
+    //Case 1: If everything is true, make everything false
+    if(completedTodos === totalTodos) {
+      for (var i = 0; i < totalTodos; i++) {
+        this.todos[i].completed = false;
+      }
+    }
   }
 }
+};
+
+// 1. we want to get access to display todos button
+var displayTodosButton = document.getElementById('displayTodosButton');
+
+displayTodosButton.addEventListener('click', function() {
+todoList.displayTodos();
+ });
+
+ //2. we want to get access to toggle all button
+
+ var toggleAllButton = document.getElementById('toggleAllButton');
+
+ toggleAllButton.addEventListener('click', function() {
+   todoList.toggleAll();
+ });
