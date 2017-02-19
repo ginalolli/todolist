@@ -73,16 +73,34 @@ var todoList = {
   }
 };
 
-// 1. we want to get access to display todos button
-var displayTodosButton = document.getElementById('displayTodosButton');
-
-displayTodosButton.addEventListener('click', function() {
-  todoList.displayTodos();
-});
-
-//2. we want to get access to toggle all button
-var toggleAllButton = document.getElementById('toggleAllButton');
-
-toggleAllButton.addEventListener('click', function() {
-  todoList.toggleAll();
-});
+var handlers = {
+  displayTodos: function() {
+    todoList.displayTodos();
+  },
+  addTodo: function() {
+    var addTodotextInput = document.getElementById('addTodoTextInput');
+    todoList.addTodo(addTodotextInput.value);
+    addTodotextInput.value = '';
+  },
+  changeTodo: function() {
+    var changeTodoPositionInput = document.getElementById('changeTodoPositionInput');
+    var changeTodoTextInput = document.getElementById('changeTodoTextInput');
+    todoList.changeTodo(changeTodoPositionInput.valueAsNumber, changeTodoTextInput.value);
+    changeTodoPositionInput.value = '';
+    changeTodoTextInput.value = '';
+  },
+  deleteTodo: function() {
+    var deleteTodoPositionInput = document.getElementById('deleteTodoPositionInput');
+    todoList.deleteTodo(deleteTodoPositionInput.valueAsNumber);
+    deleteTodoPositionInput.value = '';
+  },
+  toggleCompleted: function() {
+    var toggleCompletedPositionInput = document.getElementById('toggleCompletedPositionInput');
+    var toggleCompletedTextInput = document.getElementById('toggleCompletedTextInput');
+    todoList.toggleCompleted(toggleCompletedPositionInput.valueAsNumber);
+    toggleCompletedPositionInput.value = '';
+  },
+   toggleAll: function() {
+    todoList.toggleAll();
+  }
+};
