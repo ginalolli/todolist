@@ -1,5 +1,4 @@
 // it should store the todos arrays on an object
-
 var todoList = {
   todos: [],
 
@@ -48,36 +47,37 @@ var todoList = {
     todo.completed = !todo.completed;
     this.displayTodos();
   },
+
   toggleAll: function() {
     var totalTodos = this.todos.length;
     var completedTodos = 0;
 
-    //Get number of completed todos
-    for (var i = 0; i < totalTodos; i++) {
-      if (this.todos[i].completed === true) {// if all todos items are completed then increment by one
-        completedTodos++;
-      }
-    //Case 1: If everything is true, make everything false
-    if(completedTodos === totalTodos) {
+      //Get number of completed todos
       for (var i = 0; i < totalTodos; i++) {
-        this.todos[i].completed = false;
+        if (this.todos[i].completed === true) {// if all todos items are completed then increment by one
+          completedTodos++;
+        }
+      //Case 1: If everything is true, make everything false
+      if(completedTodos === totalTodos) {
+        for (var i = 0; i < totalTodos; i++) {
+          this.todos[i].completed = false;
+        }
       }
     }
   }
-}
 };
+
 
 // 1. we want to get access to display todos button
 var displayTodosButton = document.getElementById('displayTodosButton');
 
 displayTodosButton.addEventListener('click', function() {
-todoList.displayTodos();
- });
+  todoList.displayTodos();
+});
 
- //2. we want to get access to toggle all button
+//2. we want to get access to toggle all button
+var toggleAllButton = document.getElementById('toggleAllButton');
 
- var toggleAllButton = document.getElementById('toggleAllButton');
-
- toggleAllButton.addEventListener('click', function() {
-   todoList.toggleAll();
- });
+toggleAllButton.addEventListener('click', function() {
+  todoList.toggleAll();
+});
